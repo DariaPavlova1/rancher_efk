@@ -58,11 +58,14 @@ metadata:
   name: quickstart
   namespace: logging
 spec:
-  version: 8.1.3
+  version: 8.3.2
   nodeSets:
   - name: default
     count: 3
     config:
+      node.master: true
+      node.data: true
+      node.ingest: true
       node.store.allow_mmap: false
 YAML
 provider = kubectl
@@ -72,7 +75,7 @@ provider = kubectl
   depends_on = [helm_release.elastic, time_sleep.wait_30_seconds]
 }
 
-# Create Kibana manifest
+# Create Kibana resource
 resource "kubectl_manifest" "kibana_quickstart" {
     yaml_body = <<YAML
 apiVersion: kibana.k8s.elastic.co/v1
@@ -81,7 +84,7 @@ metadata:
   name: quickstart
   namespace: logging
 spec:
-  version: 8.1.3
+  version: 7.10.0
   count: 1
   elasticsearchRef:
     name: quickstart
@@ -92,3 +95,4 @@ YAML
   }
   depends_on = [helm_release.elastic, kubectl_manifest.elastic_quickstart]
 }
+

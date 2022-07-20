@@ -1,4 +1,4 @@
-# Terraform solution for deploying EFK stack for Rancher 2.6
+# Installing EFK with Terraform on EKS
 
 ## Getting Started & Documentation
 
@@ -27,3 +27,7 @@ The following figure from the Banzai documentation shows the new logging archite
 ## 2. Deploy Elasticsearch and Kibana
 
 In the main.tf we deploy to the cluster [ECK operator](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-install-helm.html) using helm, Kibana and Elasticsearch resources.
+
+Additionally [Logging](https://github.com/banzaicloud/logging-operator/tree/master/config/crd/bases/logging.banzaicloud.io_loggings.yaml), [Flow](https://github.com/banzaicloud/logging-operator/tree/master/config/crd/bases/logging.banzaicloud.io_flows.yaml) and [Output](https://github.com/banzaicloud/logging-operator/tree/master/config/crd/bases/logging.banzaicloud.io_outputs.yaml) CRDs should be created to configured.
+
+![alt](https://github.com/DariaPavlova1/rancher_efk/blob/main/Images/cluster.drawio.png)
